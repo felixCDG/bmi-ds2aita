@@ -183,6 +183,13 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 keyboardType = KeyboardType.Number
 
                             ),
+                            label = {
+                                Text(
+                                    text = stringResource(
+                                        R.string.age
+                                    )
+                                )
+                            },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Tag,
@@ -206,6 +213,13 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 keyboardType = KeyboardType.Number
 
                             ),
+                            label = {
+                                Text(
+                                    text = stringResource(
+                                        R.string.weight
+                                    )
+                                )
+                            },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Balance,
@@ -227,6 +241,13 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 keyboardType = KeyboardType.Number
 
                             ),
+                            label = {
+                                Text(
+                                    text = stringResource(
+                                        R.string.height
+                                    )
+                                )
+                            },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Height,

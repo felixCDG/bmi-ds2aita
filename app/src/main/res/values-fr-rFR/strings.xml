@@ -7,4 +7,7 @@
     <string name="male">mâle</string>
     <string name="female">femelle</string>
     <string name="calculate">Calculer</string>
+    <string name="age">Age</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
 </resources>
