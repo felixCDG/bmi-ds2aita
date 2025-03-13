@@ -3,4 +3,8 @@
     <string name="welcome">Bienvenue!</string>
     <string name="your_name">Quel est votre nom?</string>
     <string name="next">Suivant</string>
+    <string name="hi">Salut !</string>
+    <string name="male">mâle</string>
+    <string name="female">femelle</string>
+    <string name="calculate">Calculer</string>
 </resources>
