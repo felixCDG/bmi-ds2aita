@@ -41,6 +41,7 @@ android {
 
 dependencies {
 
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,4 +60,6 @@ dependencies {
 
     //Libs Extras
     implementation(libs.androidx.material.icons.extended.android)
+    //lib para navegacao entre telas
+    implementation("androidx.navigation:navigation-compose:2.8.9")
 }

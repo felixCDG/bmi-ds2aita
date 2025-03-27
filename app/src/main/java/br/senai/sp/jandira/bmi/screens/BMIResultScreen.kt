@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,6 +41,14 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
 fun BMIResultScrenn(modifier: Modifier = Modifier) {
+
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("user_file", Context.MODE_PRIVATE)
+    val userAge = userFile.getInt("user_age", 0)
+    val userWei = userFile.getFloat("user_weight", 0.0f)
+    val userHei = userFile.getFloat("user_height", 0.0f)
+
 
     Box(
         modifier = Modifier
@@ -169,7 +179,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                                         .padding(3.dp)
                                 )
                                 Text(
-                                    text = "50" ,
+                                    text = "$userAge" ,
                                     fontSize = 20.sp,
                                     fontWeight = FontWeight.ExtraBold,
                                     color = Color.Black
@@ -194,7 +204,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                                         .padding(3.dp)
                                 )
                                 Text(
-                                    text = "97 Kg",
+                                    text = "$userWei",
                                     fontSize = 20.sp,
                                     fontWeight = FontWeight.ExtraBold,
                                     color = Color.Black
@@ -218,7 +228,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
 
                                 )
                                 Text(
-                                    text = "178 cm",
+                                    text = "$userHei",
                                     fontSize = 20.sp,
                                     fontWeight = FontWeight.ExtraBold,
                                     color = Color.Black

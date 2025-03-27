@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,13 +14,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.Height
 import androidx.compose.material.icons.filled.Tag
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -40,21 +40,28 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 @Composable
-fun UserDataScreen(modifier: Modifier = Modifier) {
+fun UserDataScreen(navegacao: NavHostController?) {
 
    var ageState = remember {
-       mutableStateOf("Age")
+       mutableStateOf("")
    }
     var weiState = remember {
-       mutableStateOf("Weight")
+       mutableStateOf("")
    }
     var heiState = remember {
-       mutableStateOf("Height")
+       mutableStateOf("")
    }
 
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("user_file", Context.MODE_PRIVATE)
+    val editor = userFile.edit()
+
+    val userName = userFile.getString("user_name", "")
 
 
     Box (
@@ -73,7 +80,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
             )
     ){
         Column (
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .background(Color.Transparent),
             verticalArrangement = Arrangement.SpaceBetween
@@ -82,8 +89,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
             Text(
                 text = stringResource(
                     R.string.hi
-                ),
-                modifier = modifier
+                )+ "$userName",
+                modifier = Modifier
                     .padding(top = 70.dp)
                     .padding(horizontal = 15.dp),
                 fontSize = 30.sp,
@@ -94,7 +101,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White
                 ),
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(700.dp)
                     .padding(top = 20.dp),
@@ -106,18 +113,20 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
 
             ) {
                 Column (
-                    modifier = modifier
+                    modifier = Modifier
                         .fillMaxSize()
                         .padding(top = 20.dp),
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
                     Row (
-                        modifier = modifier
+                        modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 0.dp)
                     ){
-                        Column {
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {
                             Image(
                                 painter = painterResource(
                                     R.drawable.mas
@@ -128,8 +137,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 onClick = {},
                                 colors = ButtonDefaults.buttonColors(Color(0xFF6A0303)),
                                 modifier = Modifier
-                                    .padding(horizontal = 42.dp)
-                                    .width(100.dp)
+                                    .padding(horizontal = 16.dp)
+                                    .fillMaxWidth()
 
                             ) {
                                 Text(
@@ -140,7 +149,9 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 )
                             }
                         }
-                        Column{
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ){
                             Image(
                                 painter = painterResource(
                                     R.drawable.fem
@@ -151,8 +162,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 onClick = {},
                                 colors = ButtonDefaults.buttonColors(Color(0xFF6A0303)),
                                 modifier = Modifier
-                                    .padding(horizontal = 45.dp)
-                                    .width(100.dp)
+                                    .padding(horizontal = 16.dp)
+                                    .fillMaxWidth()
                             ) {
                                 Text(
                                     text = stringResource(
@@ -163,7 +174,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                         }
                     }
                     Column (
-                        modifier = modifier
+                        modifier = Modifier
                             .fillMaxWidth()
                             .height(380.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -175,7 +186,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             onValueChange = {
                                 ageState.value = it
                             },
-                            modifier = modifier
+                            modifier = Modifier
                                 .width(320.dp)
                                 .padding(bottom = 18.dp),
                             shape = RoundedCornerShape(20.dp),
@@ -205,7 +216,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             onValueChange = {
                                 weiState.value = it
                             },
-                            modifier = modifier
+                            modifier = Modifier
                                 .width(320.dp)
                                 .padding(bottom = 18.dp),
                             shape = RoundedCornerShape(20.dp),
@@ -234,7 +245,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             onValueChange = {
                                 heiState.value = it
                             },
-                            modifier = modifier
+                            modifier = Modifier
                                 .width(320.dp),
                             shape = RoundedCornerShape(20.dp),
                             keyboardOptions = KeyboardOptions(
@@ -258,9 +269,15 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             }
                         )
                         Button(
-                            onClick = {},
+                            onClick = {
+                                editor.putInt("user_age", ageState.value.toInt())
+                                editor.putFloat("user_weight", weiState.value.toFloat())
+                                editor.putFloat("user_height", heiState.value.toFloat())
+                                editor.apply()
+                                navegacao?.navigate("bmi_result")
+                            },
                             colors = ButtonDefaults.buttonColors(Color(0xFF6A0303)),
-                            modifier = modifier
+                            modifier = Modifier
                                 .padding(top = 50.dp)
                                 .width(320.dp)
                                 .height(50.dp)
@@ -293,5 +310,5 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun UserDataScreenPreview(){
-    UserDataScreen()
+    UserDataScreen(null)
 }
