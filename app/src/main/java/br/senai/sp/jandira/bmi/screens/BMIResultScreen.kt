@@ -15,11 +15,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -27,7 +25,6 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -36,11 +33,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 
 @Composable
-fun BMIResultScrenn(modifier: Modifier = Modifier) {
+fun BMIResultScrenn(navegacao: NavHostController?) {
 
     val context = LocalContext.current
     val userFile = context
@@ -66,7 +64,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
             )
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxSize()
                 .background(Color.Transparent),
             verticalArrangement = Arrangement.SpaceBetween
@@ -76,7 +74,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                 text = stringResource(
                     R.string.your_bmi
                 ),
-                modifier = modifier
+                modifier = Modifier
                     .padding(top = 70.dp)
                     .padding(horizontal = 15.dp),
                 fontSize = 30.sp,
@@ -87,7 +85,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White
                 ),
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(700.dp)
                     .padding(top = 20.dp),
@@ -99,14 +97,14 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
 
             ) {
                 Column(
-                    modifier = modifier
+                    modifier = Modifier
                         .fillMaxSize(),
                     verticalArrangement = Arrangement.Top,
                     horizontalAlignment = Alignment.CenterHorizontally
 
                 ) {
                     Card(
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(top = 10.dp)
                             .size(130.dp),
                         colors = CardDefaults.cardColors(
@@ -127,7 +125,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                         )
                     ) {
                         Column(
-                            modifier = modifier
+                            modifier = Modifier
                                 .fillMaxSize(),
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
@@ -144,7 +142,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                         text = stringResource(
                             R.string.you_have
                         ),
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(top = 7.dp),
                         fontSize = 20.sp,
                         color = Color.Black,
@@ -154,7 +152,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
 
                     )
                     Card(
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(top = 7.dp)
                             .height(95.dp)
                             .width(320.dp)
@@ -239,7 +237,7 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                         }
                     }
                     Card(
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(top = 10.dp)
                             .fillMaxWidth()
                             .height(230.dp),
@@ -250,9 +248,11 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
                             .height(15.dp)
                     )
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navegacao?.navigate("user_data")
+                        },
                         colors = ButtonDefaults.buttonColors(Color(0xFF6A0303)),
-                        modifier = modifier
+                        modifier = Modifier
                             .padding(top = 30.dp)
                             .width(300.dp)
                             .height(50.dp)
@@ -276,5 +276,5 @@ fun BMIResultScrenn(modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun UserDataScreenPreview() {
-    BMIResultScrenn()
+    BMIResultScrenn(null)
 }
