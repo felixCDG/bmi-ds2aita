@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
+import br.senai.sp.jandira.bmi.calcs.bmiCalculate
+import br.senai.sp.jandira.bmi.utils.numberConvertToLocael
 
 
 @Composable
@@ -46,6 +48,12 @@ fun BMIResultScrenn(navegacao: NavHostController?) {
     val userAge = userFile.getInt("user_age", 0)
     val userWei = userFile.getFloat("user_weight", 0.0f)
     val userHei = userFile.getFloat("user_height", 0.0f)
+
+    //obeter os dados do usuario
+    val result = bmiCalculate(
+        userWei.toInt(),
+        userHei.toDouble().div(100)
+    )
 
 
     Box(
@@ -113,15 +121,7 @@ fun BMIResultScrenn(navegacao: NavHostController?) {
                         shape = CircleShape,
                         border = BorderStroke(
                             width = 7.dp,
-                            brush = Brush.linearGradient(
-                                listOf(
-                                    Color(0xFA500000),
-                                    Color(0xFA940101),
-                                    Color(0xFF910000),
-                                    Color(0xFF3F0000)
-
-                                )
-                            )
+                            color = result.color
                         )
                     ) {
                         Column(
@@ -131,7 +131,7 @@ fun BMIResultScrenn(navegacao: NavHostController?) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = "60,6",
+                                text = numberConvertToLocael(result.bmi.second),
                                 fontSize = 40.sp,
                                 fontWeight = FontWeight.ExtraBold
 
@@ -139,9 +139,7 @@ fun BMIResultScrenn(navegacao: NavHostController?) {
                         }
                     }
                     Text(
-                        text = stringResource(
-                            R.string.you_have
-                        ),
+                        text = result.bmi.first,
                         modifier = Modifier
                             .padding(top = 7.dp),
                         fontSize = 20.sp,
@@ -249,7 +247,7 @@ fun BMIResultScrenn(navegacao: NavHostController?) {
                     )
                     Button(
                         onClick = {
-                            navegacao?.navigate("user_data")
+                            navegacao?.navigate("home")
                         },
                         colors = ButtonDefaults.buttonColors(Color(0xFF6A0303)),
                         modifier = Modifier

@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -191,7 +192,8 @@ fun UserDataScreen(navegacao: NavHostController?) {
                                 .padding(bottom = 18.dp),
                             shape = RoundedCornerShape(20.dp),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
 
                             ),
                             label = {
@@ -221,7 +223,8 @@ fun UserDataScreen(navegacao: NavHostController?) {
                                 .padding(bottom = 18.dp),
                             shape = RoundedCornerShape(20.dp),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
 
                             ),
                             label = {
@@ -249,7 +252,8 @@ fun UserDataScreen(navegacao: NavHostController?) {
                                 .width(320.dp),
                             shape = RoundedCornerShape(20.dp),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Done
 
                             ),
                             label = {
