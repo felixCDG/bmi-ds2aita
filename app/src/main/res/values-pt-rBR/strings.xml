@@ -19,5 +19,12 @@
     <string name="class1_weight">Você tem Obesidade Classe I!</string>
     <string name="class2_weight">Você tem Obesidade Classe II!</string>
     <string name="class3_weight">Você tem Obesidade Classe III!</string>
+    <string name="leftText1">Abaixo do peso</string>
+    <string name="leftText2">Normal</string>
+    <string name="leftText3">Sobrepeso</string>
+    <string name="leftText4">Obesidade I</string>
+    <string name="leftText5">Obesidade II</string>
+    <string name="leftText6">Obesidade III</string>
+
 
 </resources>

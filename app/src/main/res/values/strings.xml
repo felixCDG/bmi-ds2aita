@@ -6,18 +6,41 @@
     <string name="hi">Hi !</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+
+
     <string name="calculate">Calculate</string>
+
     <string name="age">Age</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
+
     <string name="your_bmi">Your BMI Result</string>
     <string name="you_have">You have class i Obesity</string>
     <string name="new_calc">New Calc</string>
+
     <string name="under_weight">You are below your ideal weight!</string>
     <string name="normal_weight">You have normal body weight!</string>
     <string name="over_weight">You are slightly overweigth!</string>
     <string name="class1_weight">You have Class I Obesity!</string>
     <string name="class2_weight">You have Class II Obesity!</string>
     <string name="class3_weight">You have Class III Obesity!</string>
+
+
+    <string name="leftText1">Underweight</string>
+    <string name="leftText2">Normal</string>
+    <string name="leftText3">Overweight</string>
+    <string name="leftText4">Obesity I</string>
+    <string name="leftText5">Obesity II</string>
+    <string name="leftText6">Obesity III</string>
+
+
+    <string name="rightText1"> 1 </string>
+    <string name="rightText2">Normal</string>
+    <string name="rightText3">Overweight</string>
+    <string name="rightText4">Obesity I</string>
+    <string name="rightText5">Obesity II</string>
+    <string name="rightText6">Obesity III</string>
+
+
 
 </resources>

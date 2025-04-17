@@ -19,5 +19,12 @@
     <string name="class1_weight">Hai Obesità di Classe I!</string>
     <string name="class2_weight">Hai Obesità di Classe II!</string>
     <string name="class3_weight">Hai Obesità di Classe III!</string>
+    <string name="leftText1">Insuffisance pondérale</string>
+    <string name="leftText2">Normal</string>
+    <string name="leftText3">Surpoids</string>
+    <string name="leftText4">Obésité I</string>
+    <string name="leftText5">Obésité II</string>
+    <string name="leftText6">Obésité III</string>
+
 
 </resources>
